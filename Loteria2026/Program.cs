@@ -8,8 +8,15 @@ namespace Loteria2026
         {
             Console.WriteLine("Ile wygenerować losowań?");
             string ileLosowan = Console.ReadLine();
+            int ileLosowanInt = int.Parse(ileLosowan);
 
             Console.WriteLine("Zestawy wylosowanych liczb: ");
+            int i = 1;
+            while (i <= ileLosowanInt)
+            {
+                Console.WriteLine($"Losowanie {i}: ");
+                i++;
+            }
         }
     }
 }
