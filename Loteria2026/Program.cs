@@ -23,11 +23,12 @@ namespace Loteria2026
             static List<int> Losuj6Liczb()
             {
                 Random random = new Random();
-                HashSet<int> liczby = new HashSet<int>();
+                HashSet<int> liczby = new HashSet<int>(); // Dzięki HashSet - W jednym zestawie liczby nie mogą się powtarzać.
+                liczby.Add(liczba);
 
                 while (liczby.Count < 6)
                 {
-                    int liczba = random.Next(1, 49);
+                    int liczba = random.Next(1, 50);
                     liczby.Add(liczba);
                 }
 
