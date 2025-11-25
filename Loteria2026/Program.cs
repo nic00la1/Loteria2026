@@ -5,10 +5,15 @@ namespace Loteria2026
 {
     class Program
     {
+        static Random random = new Random();
+        // Globalna lista przechowująca wszystkie wylosowane liczby
+        static List<int> wszystkieLiczby = new List<int>();
+
         static void Main(string[] args)
         {
             Console.WriteLine("Ile wygenerować losowań?");
             WyswietlWyniki();
+            WyswietlWystapieniaKazdejLiczby();
         }
 
         static void WyswietlWyniki()
@@ -19,14 +24,16 @@ namespace Loteria2026
             int i = 1;
             while (i <= ileLosowanInt)
             {
-                Console.WriteLine($"Losowanie {i}: {string.Join(" ", Losuj6Liczb())}");
+                List<int> losowanie = Losuj6Liczb();
+                wszystkieLiczby.AddRange(losowanie); // dodajemy liczby do globalnej listy
+
+                Console.WriteLine($"Losowanie {i}: {string.Join(" ", losowanie)}");
                 i++;
             }
         }
 
         static List<int> Losuj6Liczb()
         {
-            Random random = new Random();
             HashSet<int> liczby = new HashSet<int>(); // Dzięki HashSet - W jednym zestawie liczby nie mogą się powtarzać.
 
             while (liczby.Count < 6)
@@ -38,5 +45,13 @@ namespace Loteria2026
             return new List<int>(liczby);
         }
 
+        static void WyswietlWystapieniaKazdejLiczby()
+        {
+            for (int liczba = 1; liczba <= 49; liczba++)
+            {
+                int wystapienia = wszystkieLiczby.Count(x => x == liczba);
+                Console.WriteLine($"Wystąpienia liczby {liczba}: {wystapienia}");
+            }
+        }
     }
 }
