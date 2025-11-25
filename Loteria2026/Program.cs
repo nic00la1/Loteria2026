@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Loteria2026
 {
@@ -14,8 +15,23 @@ namespace Loteria2026
             int i = 1;
             while (i <= ileLosowanInt)
             {
-                Console.WriteLine($"Losowanie {i}: ");
+                Console.WriteLine($"Losowanie {i}: {string.Join(" ", Losuj6Liczb())}");
                 i++;
+                
+            }
+
+            static List<int> Losuj6Liczb()
+            {
+                Random random = new Random();
+                HashSet<int> liczby = new HashSet<int>();
+
+                while (liczby.Count < 6)
+                {
+                    int liczba = random.Next(1, 49);
+                    liczby.Add(liczba);
+                }
+
+                return new List<int>(liczby);
             }
         }
     }
